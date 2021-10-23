@@ -1,0 +1,18 @@
+{
+  "name": "stugamez",
+  "version": "1.0.0",
+  "description": "Project for CS 348 - a game deals web application built with React, Node, Express and MySQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
