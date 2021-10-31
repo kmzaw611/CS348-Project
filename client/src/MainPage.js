@@ -1,9 +1,28 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function MainPage(props) {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [publisher, setPublisher] = useState("");
+
+  const addNewGame = async () => {
+    if (title === "" || publisher === "") return;
+
+    await axios.post(
+      "http://localhost:8000/games",
+      {
+        title,
+        price,
+        publisher,
+      },
+      {
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+  };
 
   return (
     <div>
@@ -15,7 +34,6 @@ function MainPage(props) {
             <input value={title} onChange={(e) => setTitle(e.target.value)} />
           </label>
           <br />
-
           <br />
           <label style={{ margin: "10px" }}>
             Price:
@@ -35,7 +53,7 @@ function MainPage(props) {
             />
           </label>
           <br />
-          <button type="submit" style={{ margin: "10px" }}>
+          <button style={{ margin: "10px" }} onClick={addNewGame}>
             Add Game
           </button>
         </form>
