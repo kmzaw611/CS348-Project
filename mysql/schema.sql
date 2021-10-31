@@ -1,3 +1,5 @@
+USE stugamez;
+
 DROP TABLE IF EXISTS discounts;
 DROP TABLE IF EXISTS games;
 DROP TABLE IF EXISTS metacritic;
@@ -6,7 +8,7 @@ DROP TABLE IF EXISTS metadata;
 DROP TABLE IF EXISTS wish_list;
 
 CREATE TABLE metacritic (
-	metacritic_id INTEGER,
+	metacritic_id INTEGER AUTO_INCREMENT,
     critic_score INTEGER,
     critic_score_count INTEGER,
     user_score DECIMAL(2, 1),
@@ -15,21 +17,21 @@ CREATE TABLE metacritic (
 );
 
 CREATE TABLE steam (
-	steam_id INTEGER,
+	steam_id INTEGER AUTO_INCREMENT,
     positive_count INTEGER,
     negative_count INTEGER,
     PRIMARY KEY (steam_id)
 );
 
 CREATE TABLE metadata (
-	meta_id INTEGER,
+	meta_id INTEGER AUTO_INCREMENT,
     trailer_link VARCHAR(150),
     img_link VARCHAR(150),
     PRIMARY KEY (meta_id)
 );
 
 CREATE TABLE games (
-	game_id INTEGER,
+	game_id INTEGER AUTO_INCREMENT,
     metacritic_id INTEGER,
     steam_id INTEGER,
     meta_id INTEGER,
@@ -54,7 +56,8 @@ CREATE TABLE discounts (
 CREATE TABLE wish_list (
 	game_id INTEGER,
     title VARCHAR(40),
-    PRIMARY KEY (game_id)
+    PRIMARY KEY (game_id),
+    FOREIGN KEY (game_id) REFERENCES games(game_id)
 );
 
 -- SHOW TABLES;
