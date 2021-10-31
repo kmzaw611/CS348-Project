@@ -1,10 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function MainPage(props) {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [publisher, setPublisher] = useState("");
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    // Get list of games from the database to show on the main screen.
+    const getGames = async () => {
+      const response = await axios.get("http://localhost:8000/games");
+      setGames(response.data);
+    };
+    getGames();
+  }, []);
+
+  const renderedGames = games.map((game) => {
+    return (
+      <div>
+        <h2>Title: {game.title}</h2>
+        <h3>Price: {game.price}</h3>
+        <h3>Publisher: {game.publisher}</h3>
+      </div>
+    );
+  });
 
   const addNewGame = async () => {
     if (title === "" || publisher === "") return;
@@ -63,6 +83,8 @@ function MainPage(props) {
       <button style={{ margin: "10px" }}>Report Discount</button>
       <br />
       <button style={{ margin: "10px" }}>Wishlist</button>
+
+      <div>{renderedGames}</div>
     </div>
   );
 }

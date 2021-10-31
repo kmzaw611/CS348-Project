@@ -24,10 +24,32 @@ app.post("/games", (req, res) => {
   );
 });
 
+app.get("/games", (req, res) => {
+  connection.query(
+    "SELECT title, price, publisher FROM games;",
+    (error, result) => {
+      if (error) throw error;
+
+      games = [];
+      for (let i = 0; i < result.length; i++) {
+        game = {
+          title: result[i].title,
+          price: result[i].price,
+          publisher: result[i].publisher,
+        };
+        games.push(game);
+      }
+      res.send(games);
+      // console.log("Results:");
+      // console.log(result);
+    }
+  );
+});
+
 app.listen(port, () => {
   console.log("Server running on port: " + port);
   connection.connect();
-  connection.query("USE stugamez;", (error, results, fields) => {
+  connection.query("USE stugamez;", (error) => {
     if (error) throw error;
     console.log("Successful connection to AWS...");
   });
