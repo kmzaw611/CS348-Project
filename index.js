@@ -16,8 +16,12 @@ app.use(express.json());
 var connection = require("./mysql/connection");
 
 app.post("/games", (req, res) => {
-  console.log(req.body);
-  res.send("Game Added!");
+  const title = req.body.title;
+  const price = req.body.price;
+  const publisher = req.body.publisher;
+  connection.query(
+    `INSERT INTO games(title, price, publisher) VALUES("${title}", ${price}, "${publisher}");`
+  );
 });
 
 app.listen(port, () => {

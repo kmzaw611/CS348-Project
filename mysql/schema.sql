@@ -1,11 +1,11 @@
 USE stugamez;
 
 DROP TABLE IF EXISTS discounts;
+DROP TABLE IF EXISTS wish_list;
 DROP TABLE IF EXISTS games;
 DROP TABLE IF EXISTS metacritic;
 DROP TABLE IF EXISTS steam;
 DROP TABLE IF EXISTS metadata;
-DROP TABLE IF EXISTS wish_list;
 
 CREATE TABLE metacritic (
 	metacritic_id INTEGER AUTO_INCREMENT,
@@ -61,7 +61,8 @@ CREATE TABLE wish_list (
 );
 
 -- SHOW TABLES;
--- DESCRIBE game;
+-- DESCRIBE games;
+SELECT * FROM games;
 -- DESCRIBE metadata;
 -- DESCRIBE steam;
 -- DESCRIBE metacritic;
