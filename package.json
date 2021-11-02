@@ -4,6 +4,7 @@
   "description": "Project for CS 348 - a game deals web application built with React, Node, Express and MySQL",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
