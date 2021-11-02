@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 8000;
+const port = process.env.port || 8000;
 
 // Cors is necessary if using chrome developer tools and developing locally.
 // Otherwise, cross-origin referencing errors will happen.
