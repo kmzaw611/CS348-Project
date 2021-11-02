@@ -9,3 +9,5 @@ aws-ec2-cs348.pem
 
 # React build
 /client/build
+# Local Netlify folder
+.netlify

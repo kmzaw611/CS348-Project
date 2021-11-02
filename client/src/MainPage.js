@@ -18,9 +18,9 @@ function MainPage(props) {
     getGames();
   }, []);
 
-  const renderedGames = games.map((game) => {
+  const renderedGames = games.map((game, i) => {
     return (
-      <div>
+      <div key={i}>
         <h2>Title: {game.title}</h2>
         <h3>Price: {game.price}</h3>
         <h3>Publisher: {game.publisher}</h3>
@@ -44,6 +44,8 @@ function MainPage(props) {
         },
       }
     );
+
+    console.log("Accepted!");
   };
 
   return (
