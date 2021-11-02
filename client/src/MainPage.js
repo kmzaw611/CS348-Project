@@ -10,7 +10,9 @@ function MainPage(props) {
   useEffect(() => {
     // Get list of games from the database to show on the main screen.
     const getGames = async () => {
-      const response = await axios.get("http://localhost:8000/games");
+      const response = await axios.get(
+        "https://stugamez-backend.herokuapp.com/games"
+      );
       setGames(response.data);
     };
     getGames();
@@ -30,7 +32,7 @@ function MainPage(props) {
     if (title === "" || publisher === "") return;
 
     await axios.post(
-      "http://localhost:8000/games",
+      "https://stugamez-backend.herokuapp.com/games",
       {
         title,
         price,

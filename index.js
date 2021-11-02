@@ -1,16 +1,9 @@
 const express = require("express");
 const app = express();
 const port = process.env.port || 8000;
-
-// Cors is necessary if using chrome developer tools and developing locally.
-// Otherwise, cross-origin referencing errors will happen.
 const cors = require("cors");
-const corsOptions = {
-  origin: "*",
-  credentials: true,
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use(cors());
+
 app.use(express.json());
 
 var connection = require("./mysql/connection");
