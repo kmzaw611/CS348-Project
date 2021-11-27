@@ -11,3 +11,5 @@ aws-ec2-cs348.pem
 /client/build
 # Local Netlify folder
 .netlify
+
+notes.txt
