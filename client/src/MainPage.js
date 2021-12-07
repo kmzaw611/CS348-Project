@@ -10,11 +10,63 @@ import {
   Image,
   Form,
 } from "semantic-ui-react";
+import axios from "axios";
 import game_discount from "./assets/game_discount.png";
 
 function MainPage(props) {
   const apiDomain = getAPIDomain();
   const [openAdd, setOpenAdd] = useState(false);
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState(null);
+  const [publisher, setPublisher] = useState("");
+  const [trailerLink, setTrailerLink] = useState("");
+  const [imgLink, setImgLink] = useState("");
+  const [criticScore, setCriticScore] = useState(null);
+  const [criticScoreCount, setCriticScoreCount] = useState(null);
+  const [userScore, setUserScore] = useState(null);
+  const [userScoreCount, setUserScoreCount] = useState(null);
+  const [positiveCount, setPositiveCount] = useState(null);
+  const [negativeCount, setNegativeCount] = useState(null);
+  const [discountPrice, setDiscountPrice] = useState(null);
+  const [discountPercent, setDiscountPercent] = useState(null);
+  const [website, setWebsite] = useState("");
+
+  function resetInputFields() {
+    // Hard reset function to call when we pull up a new form.
+    setTitle("");
+    setPrice(null);
+    setPublisher("");
+    setTrailerLink("");
+    setImgLink("");
+    setCriticScore(null);
+    setCriticScoreCount(null);
+    setUserScore(null);
+    setUserScoreCount(null);
+    setPositiveCount(null);
+    setNegativeCount(null);
+    setDiscountPrice(null);
+    setDiscountPercent(null);
+    setWebsite("");
+  }
+
+  async function addGame() {
+    axios.post(apiDomain + "/games", {
+      title,
+      price,
+      publisher,
+      trailerLink,
+      imgLink,
+      criticScore,
+      criticScoreCount,
+      userScore,
+      userScoreCount,
+      positiveCount,
+      negativeCount,
+      discountPrice,
+      discountPercent,
+      website,
+    });
+  }
 
   return (
     <div className="container">
@@ -33,86 +85,149 @@ function MainPage(props) {
                 onOpen={() => setOpenAdd(true)}
                 open={openAdd}
                 trigger={
-                  <Button className="menu-button">
+                  <Button className="menu-button" onClick={resetInputFields}>
                     Report A Game Discount
                   </Button>
                 }
               >
                 <Modal.Header>Report A Game Discount</Modal.Header>
-                <Modal.Content image>
+                <Modal.Content image scrolling>
                   <Image size="medium" src={game_discount} wrapped />
                   <Modal.Description>
                     <Form>
                       <Header as="h3">Game Information</Header>
                       <Form.Field>
-                        <label>Name</label>
-                        <input placeholder="Name..." />
+                        <label>Title</label>
+                        <input
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
+                          placeholder="Title..."
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Price</label>
-                        <input placeholder="Price..." />
+                        <input
+                          value={price}
+                          onChange={(e) => setPrice(e.target.value)}
+                          placeholder="Price..."
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Publisher</label>
-                        <input placeholder="Publisher..." />
+                        <input
+                          value={publisher}
+                          onChange={(e) => setPublisher(e.target.value)}
+                          placeholder="Publisher..."
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Trailer Link</label>
-                        <input placeholder="Trailer Link..." />
+                        <input
+                          value={trailerLink}
+                          onChange={(e) => setTrailerLink(e.target.value)}
+                          placeholder="Trailer Link..."
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Image Link</label>
-                        <input placeholder="Image Link..." />
+                        <input
+                          value={imgLink}
+                          onChange={(e) => setImgLink(e.target.value)}
+                          placeholder="Image Link..."
+                        />
                       </Form.Field>
 
                       <Header as="h3">Rating Information</Header>
                       <Form.Field>
                         <label>Metacritic Critic Score</label>
-                        <input placeholder="0" />
+                        <input
+                          value={criticScore}
+                          onChange={(e) => setCriticScore(e.target.value)}
+                          placeholder="0"
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Critic Score Count</label>
-                        <input placeholder="0" />
+                        <input
+                          value={criticScoreCount}
+                          onChange={(e) => setCriticScoreCount(e.target.value)}
+                          placeholder="0"
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Metacritic User Score</label>
-                        <input placeholder="0" />
+                        <input
+                          value={userScore}
+                          onChange={(e) => setUserScore(e.target.value)}
+                          placeholder="0"
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>User Score Count</label>
-                        <input placeholder="0" />
+                        <input
+                          value={userScoreCount}
+                          onChange={(e) => setUserScoreCount(e.target.value)}
+                          placeholder="0"
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Steam Positive Count</label>
-                        <input placeholder="0" />
+                        <input
+                          value={positiveCount}
+                          onChange={(e) => setPositiveCount(e.target.value)}
+                          placeholder="0"
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Steam Negative Count</label>
-                        <input placeholder="0" />
+                        <input
+                          value={negativeCount}
+                          onChange={(e) => setNegativeCount(e.target.value)}
+                          placeholder="0"
+                        />
                       </Form.Field>
 
                       <Header as="h3">Discount Information</Header>
                       <Form.Field>
                         <label>Discounted Price</label>
-                        <input placeholder="0" />
+                        <input
+                          value={discountPrice}
+                          onChange={(e) => setDiscountPrice(e.target.value)}
+                          placeholder="0"
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Discounted Price Percentage</label>
-                        <input placeholder="0" />
+                        <input
+                          value={discountPercent}
+                          onChange={(e) => setDiscountPercent(e.target.value)}
+                          placeholder="0"
+                        />
                       </Form.Field>
                       <Form.Field>
                         <label>Discount Website</label>
-                        <input placeholder="Discount Website..." />
+                        <input
+                          value={website}
+                          onChange={(e) => setWebsite(e.target.value)}
+                          placeholder="Discount Website..."
+                        />
                       </Form.Field>
                     </Form>
                   </Modal.Description>
                 </Modal.Content>
-
+                <br />
                 <Modal.Actions>
                   <Button basic onClick={() => setOpenAdd(false)} negative>
                     Cancel
                   </Button>
-                  <Button basic onClick={() => setOpenAdd(false)} positive>
+                  <Button
+                    basic
+                    onClick={() => {
+                      setOpenAdd(false);
+                      addGame();
+                    }}
+                    positive
+                  >
                     Add Game
                   </Button>
                 </Modal.Actions>
