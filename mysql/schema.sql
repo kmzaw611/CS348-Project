@@ -1,13 +1,13 @@
 USE stugamez;
 
-DROP TABLE IF EXISTS discounts;
-DROP TABLE IF EXISTS wish_list;
-DROP TABLE IF EXISTS games;
-DROP TABLE IF EXISTS metacritic;
-DROP TABLE IF EXISTS steam;
-DROP TABLE IF EXISTS metadata;
+-- DROP TABLE IF EXISTS discounts;
+-- DROP TABLE IF EXISTS wish_list;
+-- DROP TABLE IF EXISTS games;
+-- DROP TABLE IF EXISTS metacritic;
+-- DROP TABLE IF EXISTS steam;
+-- DROP TABLE IF EXISTS metadata;
 
-CREATE TABLE metacritic (
+CREATE TABLE IF NOT EXISTS metacritic (
 	metacritic_id INTEGER AUTO_INCREMENT,
     critic_score INTEGER,
     critic_score_count INTEGER,
@@ -16,21 +16,21 @@ CREATE TABLE metacritic (
     PRIMARY KEY (metacritic_id)
 );
 
-CREATE TABLE steam (
+CREATE TABLE IF NOT EXISTS steam (
 	steam_id INTEGER AUTO_INCREMENT,
     positive_count INTEGER,
     negative_count INTEGER,
     PRIMARY KEY (steam_id)
 );
 
-CREATE TABLE metadata (
+CREATE TABLE IF NOT EXISTS metadata (
 	meta_id INTEGER AUTO_INCREMENT,
     trailer_link VARCHAR(150),
     img_link VARCHAR(150),
     PRIMARY KEY (meta_id)
 );
 
-CREATE TABLE games (
+CREATE TABLE IF NOT EXISTS games (
 	game_id INTEGER AUTO_INCREMENT,
     metacritic_id INTEGER,
     steam_id INTEGER,
@@ -44,7 +44,7 @@ CREATE TABLE games (
     FOREIGN KEY (meta_id) REFERENCES metadata(meta_id) ON DELETE CASCADE
 );
 
-CREATE TABLE discounts (
+CREATE TABLE IF NOT EXISTS discounts (
 	game_id INTEGER,
     website VARCHAR(150),
     discounted_price DECIMAL(5, 2),
@@ -53,7 +53,7 @@ CREATE TABLE discounts (
     FOREIGN KEY (game_id) REFERENCES games(game_id)
 );
 
-CREATE TABLE wish_list (
+CREATE TABLE IF NOT EXISTS wish_list (
 	game_id INTEGER,
     title VARCHAR(40),
     PRIMARY KEY (game_id),
@@ -62,7 +62,7 @@ CREATE TABLE wish_list (
 
 -- SHOW TABLES;
 -- DESCRIBE games;
-SELECT * FROM games;
+-- SELECT * FROM games;
 -- DESCRIBE metadata;
 -- DESCRIBE steam;
 -- DESCRIBE metacritic;
