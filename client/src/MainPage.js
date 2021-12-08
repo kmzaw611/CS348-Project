@@ -50,6 +50,10 @@ function MainPage(props) {
   }
 
   async function addGame() {
+    // Some input sanitization.
+    // None of these values can be null.
+    // <input> parameters used to limit value types as well.
+
     axios.post(apiDomain + "/games", {
       title,
       price,
@@ -110,6 +114,7 @@ function MainPage(props) {
                           value={price}
                           onChange={(e) => setPrice(e.target.value)}
                           placeholder="Price..."
+                          type="number"
                         />
                       </Form.Field>
                       <Form.Field>
@@ -144,6 +149,7 @@ function MainPage(props) {
                           value={criticScore}
                           onChange={(e) => setCriticScore(e.target.value)}
                           placeholder="0"
+                          input="number"
                         />
                       </Form.Field>
                       <Form.Field>
@@ -152,6 +158,7 @@ function MainPage(props) {
                           value={criticScoreCount}
                           onChange={(e) => setCriticScoreCount(e.target.value)}
                           placeholder="0"
+                          input="number"
                         />
                       </Form.Field>
                       <Form.Field>
@@ -160,6 +167,7 @@ function MainPage(props) {
                           value={userScore}
                           onChange={(e) => setUserScore(e.target.value)}
                           placeholder="0"
+                          input="number"
                         />
                       </Form.Field>
                       <Form.Field>
@@ -168,6 +176,7 @@ function MainPage(props) {
                           value={userScoreCount}
                           onChange={(e) => setUserScoreCount(e.target.value)}
                           placeholder="0"
+                          input="number"
                         />
                       </Form.Field>
                       <Form.Field>
@@ -176,6 +185,7 @@ function MainPage(props) {
                           value={positiveCount}
                           onChange={(e) => setPositiveCount(e.target.value)}
                           placeholder="0"
+                          input="number"
                         />
                       </Form.Field>
                       <Form.Field>
@@ -184,6 +194,7 @@ function MainPage(props) {
                           value={negativeCount}
                           onChange={(e) => setNegativeCount(e.target.value)}
                           placeholder="0"
+                          input="number"
                         />
                       </Form.Field>
 
@@ -194,6 +205,7 @@ function MainPage(props) {
                           value={discountPrice}
                           onChange={(e) => setDiscountPrice(e.target.value)}
                           placeholder="0"
+                          input="number"
                         />
                       </Form.Field>
                       <Form.Field>
@@ -202,6 +214,7 @@ function MainPage(props) {
                           value={discountPercent}
                           onChange={(e) => setDiscountPercent(e.target.value)}
                           placeholder="0"
+                          input="number"
                         />
                       </Form.Field>
                       <Form.Field>
