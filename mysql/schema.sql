@@ -1,11 +1,11 @@
 USE stugamez;
 
-DROP TABLE IF EXISTS discounts;
-DROP TABLE IF EXISTS wishlist;
-DROP TABLE IF EXISTS games;
-DROP TABLE IF EXISTS metacritic;
-DROP TABLE IF EXISTS steam;
-DROP TABLE IF EXISTS metadata;
+-- DROP TABLE IF EXISTS wishlist;
+-- DROP TABLE IF EXISTS games;
+-- DROP TABLE IF EXISTS discounts;
+-- DROP TABLE IF EXISTS metacritic;
+-- DROP TABLE IF EXISTS steam;
+-- DROP TABLE IF EXISTS metadata;
 
 CREATE TABLE IF NOT EXISTS metacritic (
 	metacritic_id INTEGER AUTO_INCREMENT,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS games (
     FOREIGN KEY (metacritic_id) REFERENCES metacritic(metacritic_id) ON DELETE CASCADE,
     FOREIGN KEY (steam_id) REFERENCES steam(steam_id) ON DELETE CASCADE,
     FOREIGN KEY (meta_id) REFERENCES metadata(meta_id) ON DELETE CASCADE,
-    FOREIGN KEY (discount_id) REFERENCES discounts(discount_id) ON DELETE CASCADE,
+    FOREIGN KEY (discount_id) REFERENCES discounts(discount_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS wishlist (
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS wishlist (
     game_id INTEGER,
     title VARCHAR(40),
     PRIMARY KEY (wishlist_id),
-    FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE NO ACTION;
+    FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE NO ACTION
 );
 
 -- SHOW TABLES;

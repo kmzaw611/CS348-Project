@@ -14,11 +14,11 @@ router.post("/", (req, res) => {
   connection.query(
     `
     CALL add_game(
-      ${req.body.title},
+      "${req.body.title}",
       ${req.body.price},
-      ${req.body.publisher},
-      ${req.body.trailerLink},
-      ${req.body.imgLink},
+      "${req.body.publisher}",
+      "${req.body.trailerLink}",
+      "${req.body.imgLink}",
       ${req.body.criticScore},
       ${req.body.criticScoreCount},
       ${req.body.userScore},
@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
       ${req.body.negativeCount},
       ${req.body.discountPrice},
       ${req.body.discountPercent},
-      ${req.body.website}
+      "${req.body.website}"
     );
   `,
     function (error, results, fields) {
