@@ -38,19 +38,12 @@ CREATE TABLE IF NOT EXISTS discounts (
     PRIMARY KEY (discount_id)
 );
 
-CREATE TABLE IF NOT EXISTS wishlist (
-	wishlist_id INTEGER AUTO_INCREMENT,
-    title VARCHAR(40),
-    PRIMARY KEY (wishlist_id)
-);
-
 CREATE TABLE IF NOT EXISTS games (
 	game_id INTEGER AUTO_INCREMENT,
     metacritic_id INTEGER,
     steam_id INTEGER,
     meta_id INTEGER,
     discount_id INTEGER,
-    wishlist_id INTEGER,
     title VARCHAR(40),
     price DECIMAL(5, 2),
     publisher VARCHAR(40),
@@ -59,7 +52,14 @@ CREATE TABLE IF NOT EXISTS games (
     FOREIGN KEY (steam_id) REFERENCES steam(steam_id) ON DELETE CASCADE,
     FOREIGN KEY (meta_id) REFERENCES metadata(meta_id) ON DELETE CASCADE,
     FOREIGN KEY (discount_id) REFERENCES discounts(discount_id) ON DELETE CASCADE,
-    FOREIGN KEY (wishlist_id) REFERENCES wishlist(wishlist_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS wishlist (
+	wishlist_id INTEGER AUTO_INCREMENT,
+    game_id INTEGER,
+    title VARCHAR(40),
+    PRIMARY KEY (wishlist_id),
+    FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE NO ACTION;
 );
 
 -- SHOW TABLES;
