@@ -54,7 +54,37 @@ function MainPage(props) {
     // None of these values can be null.
     // <input> parameters used to limit value types as well.
 
-    axios.post(apiDomain + "/games", {
+    if (
+      title === "" ||
+      publisher === "" ||
+      trailerLink === "" ||
+      imgLink === "" ||
+      website === ""
+    ) {
+      alert(
+        "You are missing a value. Please enter a valid value for all fields."
+      );
+      return;
+    }
+
+    if (
+      price === null ||
+      criticScore === null ||
+      criticScoreCount === null ||
+      userScore === null ||
+      userScoreCount === null ||
+      positiveCount === null ||
+      negativeCount === null ||
+      discountPrice === null ||
+      discountPercent === null
+    ) {
+      alert(
+        "You are missing a value. Please enter a valid value for all fields."
+      );
+      return;
+    }
+
+    await axios.post(apiDomain + "/games", {
       title,
       price,
       publisher,
@@ -70,6 +100,7 @@ function MainPage(props) {
       discountPercent,
       website,
     });
+    setOpenAdd(false); // Close the modal after adding a game.
   }
 
   return (
@@ -236,7 +267,6 @@ function MainPage(props) {
                   <Button
                     basic
                     onClick={() => {
-                      setOpenAdd(false);
                       addGame();
                     }}
                     positive
