@@ -113,6 +113,9 @@ function MainPage(props) {
       website,
     });
     setOpenAdd(false); // Close the modal after adding a game.
+    // Reload game data to be updated with the game that we just added.
+    let gameInfo = await axios.get(apiDomain + "/games");
+    setDisplayInfo(gameInfo.data);
   }
 
   return (
