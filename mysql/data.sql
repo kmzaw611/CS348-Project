@@ -50,3 +50,20 @@ CALL add_game(
     55.00,
     "https://www.newegg.com/capcom-resident-evil-village/p/N82E16832233153"
 );
+
+CALL add_game(
+	"Horizon Zero Dawn",
+    49.99,
+    "Sony Interactive Entertainment",
+    "https://www.youtube.com/watch?v=u4-FCsiF5x4",
+    "https://upload.wikimedia.org/wikipedia/en/9/93/Horizon_Zero_Dawn.jpg",
+    84,
+    49,
+    6.5,
+    833,
+    52815,
+    9942,
+    39.39,
+    21.00,
+    "https://www.gamebillet.com/horizon-zero-dawn-complete-edition"
+);
