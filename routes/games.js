@@ -40,7 +40,19 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.send("Trying to GET /games");
+  console.log("GET Request to /games");
+
+  connection.query(
+    `
+    SELECT G.game_id, G.title, MD.img_link
+    FROM games G JOIN metadata MD
+    ON G.meta_id = MD.meta_id; 
+  `,
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send(results);
+    }
+  );
 });
 
 module.exports = router;
