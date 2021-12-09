@@ -33,3 +33,37 @@ CALL add_game(
     50.00,
     "https://store.steampowered.com/app/1091500/Cyberpunk_2077/"
 );
+
+CALL add_game(
+	"Resident Evil Village",
+    59.99,
+    "Capcom",
+    "https://www.youtube.com/watch?v=26tay8lMZW4",
+    "https://upload.wikimedia.org/wikipedia/en/2/2c/Resident_Evil_Village.png",
+    83,
+    23,
+    8.4,
+    788,
+    62267,
+    2686,
+    26.99,
+    55.00,
+    "https://www.newegg.com/capcom-resident-evil-village/p/N82E16832233153"
+);
+
+CALL add_game(
+	"Horizon Zero Dawn",
+    49.99,
+    "Sony Interactive Entertainment",
+    "https://www.youtube.com/watch?v=u4-FCsiF5x4",
+    "https://upload.wikimedia.org/wikipedia/en/9/93/Horizon_Zero_Dawn.jpg",
+    84,
+    49,
+    6.5,
+    833,
+    52815,
+    9942,
+    39.39,
+    21.00,
+    "https://www.gamebillet.com/horizon-zero-dawn-complete-edition"
+);

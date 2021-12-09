@@ -72,7 +72,8 @@ CREATE TABLE IF NOT EXISTS wishlist (
 
 SELECT * FROM games;
 SELECT * FROM metadata;
-SELECT * FROM steam;
 SELECT * FROM metacritic;
+SELECT * FROM steam;
 SELECT * FROM discounts;
+SELECT * FROM wishlist;
 
