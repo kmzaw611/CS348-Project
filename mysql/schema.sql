@@ -75,4 +75,5 @@ SELECT * FROM metadata;
 SELECT * FROM steam;
 SELECT * FROM metacritic;
 SELECT * FROM discounts;
+SELECT * FROM wishlist;
 

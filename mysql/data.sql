@@ -33,3 +33,20 @@ CALL add_game(
     50.00,
     "https://store.steampowered.com/app/1091500/Cyberpunk_2077/"
 );
+
+CALL add_game(
+	"Resident Evil Village",
+    59.99,
+    "Capcom",
+    "https://www.youtube.com/watch?v=26tay8lMZW4",
+    "https://upload.wikimedia.org/wikipedia/en/2/2c/Resident_Evil_Village.png",
+    83,
+    23,
+    8.4,
+    788,
+    62267,
+    2686,
+    26.99,
+    55.00,
+    "https://www.newegg.com/capcom-resident-evil-village/p/N82E16832233153"
+);
