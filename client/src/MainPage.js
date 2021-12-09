@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/MainPage.css";
 import { getAPIDomain } from "./utils";
+import GameDisplay from "./GameDisplay";
 import {
   Button,
   Header,
@@ -13,8 +14,9 @@ import {
 import axios from "axios";
 import game_discount from "./assets/game_discount.png";
 
+const apiDomain = getAPIDomain();
+
 function MainPage(props) {
-  const apiDomain = getAPIDomain();
   const [openAdd, setOpenAdd] = useState(false);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(null);
@@ -30,6 +32,16 @@ function MainPage(props) {
   const [discountPrice, setDiscountPrice] = useState(null);
   const [discountPercent, setDiscountPercent] = useState(null);
   const [website, setWebsite] = useState("");
+  const [displayInfo, setDisplayInfo] = useState([]);
+
+  useEffect(() => {
+    async function getGameInfo() {
+      let gameInfo = await axios.get(apiDomain + "/games");
+      setDisplayInfo(gameInfo.data);
+    }
+
+    getGameInfo();
+  }, []);
 
   function resetInputFields() {
     // Hard reset function to call when we pull up a new form.
@@ -289,6 +301,7 @@ function MainPage(props) {
           <Grid.Column width={12}>
             <Segment className="right-display">
               <Header as="h2">Current Discounts</Header>
+              <GameDisplay info={displayInfo} />
             </Segment>
           </Grid.Column>
         </Grid.Row>

@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
   `,
     function (error, results, fields) {
       if (error) throw error;
-      res.send(results);
+      res.send(JSON.parse(JSON.stringify(results)));
     }
   );
 });
