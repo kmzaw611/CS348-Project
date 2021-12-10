@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Card, Image } from "semantic-ui-react";
+import "./styles/GameDisplay.css";
 
 function GameDisplay(props) {
   const gameInfo = props.info;
@@ -16,7 +17,11 @@ function GameDisplay(props) {
     );
   });
 
-  return <Grid columns={6}>{renderedGames}</Grid>;
+  return (
+    <Grid columns={6} className="display-grid">
+      {renderedGames}
+    </Grid>
+  );
 }
 
 export default GameDisplay;

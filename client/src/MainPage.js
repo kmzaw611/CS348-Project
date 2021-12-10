@@ -138,7 +138,15 @@ function MainPage(props) {
                 onOpen={() => setOpenAdd(true)}
                 open={openAdd}
                 trigger={
-                  <Button className="menu-button" onClick={resetInputFields}>
+                  <Button
+                    size="huge"
+                    color="teal"
+                    className="menu-button"
+                    onClick={resetInputFields}
+                    icon
+                    labelPosition="left"
+                  >
+                    <Icon name="add" />
                     Report A Game Discount
                   </Button>
                 }
@@ -296,7 +304,16 @@ function MainPage(props) {
 
               <br />
 
-              <Button className="menu-button">Build A Wishlist</Button>
+              <Button
+                size="huge"
+                color="teal"
+                className="menu-button"
+                icon
+                labelPosition="left"
+              >
+                <Icon name="shop" />
+                Build A Wishlist
+              </Button>
 
               <br />
 
@@ -306,7 +323,9 @@ function MainPage(props) {
 
           <Grid.Column width={12}>
             <Segment className="right-display" color="teal">
-              <Header as="h2">Current Discounts</Header>
+              <Header as="h2" className="discount-header">
+                Current Discounts
+              </Header>
               <GameDisplay info={displayInfo} />
             </Segment>
           </Grid.Column>
