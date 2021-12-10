@@ -7,7 +7,7 @@ function GameDisplay(props) {
   let renderedGames = gameInfo.map((entry) => {
     return (
       <Grid.Column>
-        <Card>
+        <Card color="teal">
           <Image src={entry.img_link} size="medium" />
           <Card.Content>
             <Card.Header>{entry.title}</Card.Header>

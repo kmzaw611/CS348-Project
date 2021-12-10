@@ -35,15 +35,15 @@ function FilterComponent(props) {
   }
 
   return (
-    <Segment color="teal">
-      <Header as="h2">
+    <Segment basic color="teal">
+      <Header as="h2" color="teal" className="filter-header">
         <Icon name="settings" />
         Filtering
       </Header>
-      <Label className="slider-label" color="teal" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"large"} basic>
         <Slider
           value={filterArgs.criticLow}
-          color="black"
+          color="teal"
           settings={{
             min: 0,
             max: 100,
@@ -59,10 +59,10 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="teal" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"large"} basic>
         <Slider
           value={filterArgs.criticHigh}
-          color="black"
+          color="teal"
           settings={{
             min: 0,
             max: 100,
@@ -78,10 +78,10 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="teal" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"large"} basic>
         <Slider
           value={filterArgs.userLow}
-          color="black"
+          color="teal"
           settings={{
             min: 0,
             max: 10,
@@ -97,10 +97,10 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="teal" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"large"} basic>
         <Slider
           value={filterArgs.userHigh}
-          color="black"
+          color="teal"
           settings={{
             min: 0,
             max: 10,
@@ -119,7 +119,7 @@ function FilterComponent(props) {
       <Label className="slider-label" color="teal" size={"big"} basic>
         <Slider
           value={filterArgs.priceLow}
-          color="black"
+          color="teal"
           settings={{
             min: 0,
             max: 60,
@@ -135,10 +135,10 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="teal" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"large"} basic>
         <Slider
           value={filterArgs.priceHigh}
-          color="black"
+          color="teal"
           settings={{
             min: 0,
             max: 60,
@@ -154,7 +154,13 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Button fluid color="teal" size="big" onClick={filterDisplayedGames}>
+      <Button
+        fluid
+        color="teal"
+        size="big"
+        className="filter-button"
+        onClick={filterDisplayedGames}
+      >
         Filter
       </Button>
     </Segment>
