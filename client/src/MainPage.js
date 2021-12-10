@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles/MainPage.css";
 import { getAPIDomain } from "./utils";
 import GameDisplay from "./GameDisplay";
+import FilterComponent from "./FilterComponent";
 import {
   Button,
   Header,
@@ -127,7 +128,7 @@ function MainPage(props) {
       <Grid columns={2} divided>
         <Grid.Row columns={2}>
           <Grid.Column width={4}>
-            <Segment className="left-menu">
+            <Segment className="left-menu" color="teal">
               <Modal
                 closeIcon
                 dimmer="blurring"
@@ -297,12 +298,12 @@ function MainPage(props) {
 
               <br />
 
-              <Button className="menu-button">Advanced Filter</Button>
+              <FilterComponent />
             </Segment>
           </Grid.Column>
 
           <Grid.Column width={12}>
-            <Segment className="right-display">
+            <Segment className="right-display" color="teal">
               <Header as="h2">Current Discounts</Header>
               <GameDisplay info={displayInfo} />
             </Segment>
