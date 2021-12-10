@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&family=Montserrat:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap");
+
 .container {
   min-width: 960px !important;
   text-align: center;
@@ -5,14 +8,32 @@
 }
 
 .main-title {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 40px !important;
+  background-color: teal !important;
+  color: white !important;
+  padding: 20px !important;
 }
 
 .left-menu {
+  border: 1px solid teal !important;
 }
 
 .right-display {
+  border: 1px solid teal !important;
+  padding: 0px !important;
 }
 
 .menu-button {
   margin-bottom: 1em !important;
+  font-family: "Montserrat Alternates", sans-serif !important;
+}
+
+.discount-header {
+  font-family: "Ubuntu", sans-serif !important;
+  font-size: 28px !important;
+  background-color: teal !important;
+  color: white !important;
+  margin: 0px !important;
+  padding: 10px !important;
 }

@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
       "${req.body.website}"
     );
   `,
-    function (error, results, fields) {
+    function (error) {
       if (error) throw error;
       console.log("POST Request /games successful: game discount added.");
     }
@@ -42,17 +42,32 @@ router.post("/", (req, res) => {
 router.get("/", (req, res) => {
   console.log("GET Request to /games");
 
-  connection.query(
-    `
-    SELECT G.game_id, G.title, MD.img_link
+  let query = `
+    SELECT G.game_id, G.title, MD.img_link, D.discounted_price, D.discounted_percentage
     FROM games G JOIN metadata MD
-    ON G.meta_id = MD.meta_id; 
-  `,
-    function (error, results, fields) {
-      if (error) throw error;
-      res.send(JSON.parse(JSON.stringify(results)));
-    }
-  );
+    ON G.meta_id = MD.meta_id
+    JOIN discounts D
+    ON G.discount_id = D.discount_id
+  `;
+
+  if (req.query.hasFilter) {
+    console.log("GET Request with filters");
+    query += `
+      JOIN metacritic MC
+      ON G.metacritic_id = MC.metacritic_id  
+      WHERE MC.critic_score >= ${req.query.critic_low} AND
+      MC.critic_score <= ${req.query.critic_high} AND
+      MC.user_score >= ${req.query.user_low} AND
+      MC.user_score <= ${req.query.user_high} AND
+      D.discounted_price >= ${req.query.price_low} AND
+      D.discounted_price <= ${req.query.price_high}
+    `;
+  }
+
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.parse(JSON.stringify(results)));
+  });
 });
 
 module.exports = router;
