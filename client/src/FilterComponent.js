@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Label, Segment, Header, Icon, Button } from "semantic-ui-react";
 import { Slider } from "react-semantic-ui-range";
+import axios from "axios";
+import { getAPIDomain } from "./utils";
 import "./styles/FilterComponent.css";
+
+const apiDomain = getAPIDomain();
 
 function FilterComponent(props) {
   const [filterArgs, setFilterArgs] = useState({
@@ -12,6 +16,23 @@ function FilterComponent(props) {
     priceLow: 0,
     priceHigh: 60,
   });
+
+  async function filterDisplayedGames() {
+    let gameInfo = await axios.get(apiDomain + "/games", {
+      params: {
+        hasFilter: true,
+        critic_low: filterArgs.criticLow,
+        critic_high: filterArgs.criticHigh,
+        user_low: filterArgs.userLow,
+        user_high: filterArgs.userHigh,
+        price_low: filterArgs.priceLow,
+        price_high: filterArgs.priceHigh,
+      },
+    });
+    console.log("Test");
+    console.log(gameInfo);
+    props.setInfo(gameInfo.data);
+  }
 
   return (
     <Segment color="teal">
@@ -133,7 +154,7 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Button fluid color="teal" size="big">
+      <Button fluid color="teal" size="big" onClick={filterDisplayedGames}>
         Filter
       </Button>
     </Segment>

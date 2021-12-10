@@ -51,6 +51,7 @@ router.get("/", (req, res) => {
   `;
 
   if (req.query.hasFilter) {
+    console.log("GET Request with filters");
     query += `
       JOIN metacritic MC
       ON G.metacritic_id = MC.metacritic_id  

@@ -298,7 +298,7 @@ function MainPage(props) {
 
               <br />
 
-              <FilterComponent />
+              <FilterComponent setInfo={setDisplayInfo} />
             </Segment>
           </Grid.Column>
 
