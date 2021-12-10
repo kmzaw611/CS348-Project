@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
 .container {
   min-width: 960px !important;
   text-align: center;
@@ -5,12 +7,19 @@
 }
 
 .main-title {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 40px !important;
+  background-color: teal !important;
+  color: white !important;
+  padding: 20px !important;
 }
 
 .left-menu {
+  border: 1px solid teal !important;
 }
 
 .right-display {
+  border: 1px solid teal !important;
 }
 
 .menu-button {

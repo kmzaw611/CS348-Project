@@ -11,6 +11,7 @@ import {
   Modal,
   Image,
   Form,
+  Icon,
 } from "semantic-ui-react";
 import axios from "axios";
 import game_discount from "./assets/game_discount.png";
@@ -122,10 +123,11 @@ function MainPage(props) {
   return (
     <div className="container">
       <Header as="h1" className="main-title">
+        <Icon name="gamepad" />
         StuGameZ
       </Header>
 
-      <Grid columns={2} divided>
+      <Grid columns={2}>
         <Grid.Row columns={2}>
           <Grid.Column width={4}>
             <Segment className="left-menu" color="teal">

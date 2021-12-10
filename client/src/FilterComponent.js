@@ -40,7 +40,7 @@ function FilterComponent(props) {
         <Icon name="settings" />
         Filtering
       </Header>
-      <Label className="slider-label" color="yellow" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"big"} basic>
         <Slider
           value={filterArgs.criticLow}
           color="black"
@@ -59,7 +59,7 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="orange" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"big"} basic>
         <Slider
           value={filterArgs.criticHigh}
           color="black"
@@ -78,7 +78,7 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="yellow" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"big"} basic>
         <Slider
           value={filterArgs.userLow}
           color="black"
@@ -97,7 +97,7 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="orange" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"big"} basic>
         <Slider
           value={filterArgs.userHigh}
           color="black"
@@ -116,7 +116,7 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="yellow" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"big"} basic>
         <Slider
           value={filterArgs.priceLow}
           color="black"
@@ -135,7 +135,7 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="orange" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"big"} basic>
         <Slider
           value={filterArgs.priceHigh}
           color="black"
