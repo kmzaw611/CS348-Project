@@ -312,7 +312,7 @@ function MainPage(props) {
                 labelPosition="left"
               >
                 <Icon name="shop" />
-                Build A Wishlist
+                Wishlist
               </Button>
 
               <br />

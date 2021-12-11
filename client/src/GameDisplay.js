@@ -1,9 +1,10 @@
 import React from "react";
-import { Grid, Card, Image } from "semantic-ui-react";
+import { Grid, Card, Image, Button, Icon } from "semantic-ui-react";
 import "./styles/GameDisplay.css";
 
 function GameDisplay(props) {
   const gameInfo = props.info;
+  
   let renderedGames = gameInfo.map((entry) => {
     return (
       <Grid.Column>
@@ -12,7 +13,16 @@ function GameDisplay(props) {
           <Card.Content>
             <Card.Header>{entry.title}</Card.Header>
           </Card.Content>
-        </Card>
+            </Card>
+            <Button
+                size="small"
+                color="teal"
+                className="menu-button"
+                icon
+                labelPosition="left" >
+                <Icon name="shop" />
+                Add to Wishlist
+            </Button>
       </Grid.Column>
     );
   });
