@@ -49,7 +49,6 @@ router.get("/", (req, res) => {
     JOIN discounts D
     ON G.discount_id = D.discount_id
   `;
-
   if (req.query.hasFilter) {
     console.log("GET Request with filters");
     query += `
@@ -63,9 +62,14 @@ router.get("/", (req, res) => {
       D.discounted_price <= ${req.query.price_high}
     `;
   }
+  query += ";";
 
+  connection.query("SET TRANSACTION ISOLATION LEVEL READ COMMITTED;");
+  connection.query("START TRANSACTION;");
   connection.query(query, function (error, results, fields) {
     if (error) throw error;
+
+    connection.query("COMMIT;");
     res.send(JSON.parse(JSON.stringify(results)));
   });
 });
