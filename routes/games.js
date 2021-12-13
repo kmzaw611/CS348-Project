@@ -44,11 +44,14 @@ router.get("/game-info", (req, res) => {
     //Need name, title, price, publisher, img_link, trailer_link, website, discount price, discount percentage, critic score, user score
     let query = `
     SELECT G.game_id, G.title, G.price, G.publisher, MD.img_link, MD.trailer_link, 
-D.website, D.discounted_price, D.discounted_percentage, MC.critic_score, MC.user_score
+D.website, D.discounted_price, D.discounted_percentage, MC.critic_score, MC.user_score,
+S.positive_count, S.negative_count
     FROM games G JOIN metadata MD
     ON G.meta_id = MD.meta_id JOIN discounts D
     ON G.discount_id = D.discount_id JOIN metacritic MC
     ON G.metacritic_id = MC.metacritic_id
+    JOIN steam S
+    ON G.steam_id = S.steam_id
     WHERE G.game_id = ${req.query.game_id}
   `;
     console.log(req.query);

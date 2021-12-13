@@ -1,9 +1,11 @@
 import React from "react";
-import { Grid, Card, Image, Modal, Button, Icon, Header, Segment } from "semantic-ui-react";
+import { Grid, Card, Image, Modal, Button, Icon, Header, Segment, Container, GridColumn } from "semantic-ui-react";
 import "./styles/GameDisplay.css";
 import { getAPIDomain } from "./utils";
 import axios from "axios";
+import { PieChart, Pie, Cell } from 'recharts'; 
 const apiDomain = getAPIDomain();
+
 
 function GameDisplay(props) {
     const gameInfo = props.info;
@@ -26,8 +28,13 @@ function GameDisplay(props) {
     const [discountWeb, setDiscountWeb] = React.useState(null)
     const [discountPrice, setDiscountPrice] = React.useState(0)
     const [discountPerc, setDiscountPerc] = React.useState(0)
-
-
+    const [steamRat, setSteamRat] = React.useState(0)
+    const [chartData, setChartData] = React.useState([{ name: "undefined", p: 10 }, {name: "undefined2", p: 90}])
+    const [chart1Data, setChart1Data] = React.useState([{ name: "undefined", p: 10 }, { name: "undefined2", p: 90 }])
+    const [chart2Data, setChart2Data] = React.useState([{ name: "undefined", p: 10 }, { name: "undefined2", p: 90 }])
+    const [chart3Data, setChart3Data] = React.useState([{ name: "undefined", p: 10 }, { name: "undefined2", p: 90 }])
+    const COLORS = ['orange', 'teal'];
+    const COLORS2 = ['green', 'red'];
 
     /*var renderedGames;
     async function retrieveGameInfo() {
@@ -52,6 +59,7 @@ function GameDisplay(props) {
             });
             console.log("Test");
             console.log(gameInfo);
+            setDiscountPerc(gameInfo.data[0].discounted_percentage);
             setName(gameInfo.data[0].title);
             setImgLink(gameInfo.data[0].img_link);
             setPrice(gameInfo.data[0].price);
@@ -64,6 +72,16 @@ function GameDisplay(props) {
             setDiscountWeb(gameInfo.data[0].website);
             setDiscountPrice(gameInfo.data[0].discounted_price);
             setDiscountPerc(gameInfo.data[0].discounted_percentage);
+            let g = Math.round((gameInfo.data[0].positive_count / (gameInfo.data[0].positive_count + gameInfo.data[0].negative_count))*100);
+            setSteamRat(g);
+            setChartData([{ name: 'Regular Price', p: gameInfo.data[0].discounted_percentage },
+                { name: 'Discount Price', p: (100 - gameInfo.data[0].discounted_percentage) }]);
+            setChart1Data([{ name: 'User-Score', p: gameInfo.data[0].user_score },
+                { name: 'Lost', p: (10 - gameInfo.data[0].user_score) }]);
+            setChart2Data([{ name: 'Critic-Score', p: gameInfo.data[0].critic_score },
+                { name: 'Lost', p: (100 - gameInfo.data[0].critic_score) }]);
+            setChart3Data([{ name: 'Steam-Score', p: gameInfo.data[0].positive_count },
+                { name: 'Lost', p: (gameInfo.data[0].negative_count) }]);
             //props.setInfo(gameInfo.data);
         }
             return (
@@ -86,12 +104,13 @@ function GameDisplay(props) {
                         </Grid.Column>
                     }
                 >
-                    
-                    <Modal.Header align={'center'}>{name}</Modal.Header>
-                    <Modal.Content>
-                       
-                            <Grid container columns={3, "equal"} relaxed="very">
-                                <Grid.Column>
+
+                    <Modal.Header align={'center'} className="game-title">{name}</Modal.Header>
+                    <Modal.Content className="grid-cont">
+                        <Grid container columns={3, "equal"} relaxed="very" className="grid-bord">
+                            
+                            <Grid.Row columns={3, "equal"}>
+                                <Grid.Column width={4}>
                                     <Grid.Row>
                                         <Card color="orange" align="left">
                                         <Image src={imgLink} size="medium"/>
@@ -100,55 +119,104 @@ function GameDisplay(props) {
                                     <Grid.Row>
                                         <p>{"Producer: " + publisher}</p>
                                     </Grid.Row>
-                                <Grid.Row>
-                                    <p align="center">{"User Score: " + ratings}</p>
-                                    </Grid.Row>
                                 </Grid.Column>
-                                <Grid.Column>
-                                <Grid.Row>
-                                    <iframe className={"v-frame"}
-                                        src={tLink}
-                                        align="left"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                        title="Embedded youtube"
-                                    />
-                                    </Grid.Row>
-                                <Grid.Row>
-                                    <p>{"Critic Score: " + scores}</p>
-                                </Grid.Row>
-                                </Grid.Column>
-                                <Grid.Column>
+                                <Grid.Column width={8}>
                                     <Grid.Row>
-                                        <Card color="teal" align="right">
-                                            <p>{"Price: " + price}</p>
+                                        <iframe className={"v-frame"}
+                                            src={tLink}
+                                            align="left"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            title="Embedded youtube"
+                                        />
+                                    </Grid.Row>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Grid.Row>
+                                        <Card color="teal" align="center">
+                                            <p>{"Regular Price: " + price}</p>
                                             <p>{"Discount Price: " + discountPrice}</p>
-                                        <p>{"Discount Percentage: " + discountPerc + "%"}</p>
+                                            <PieChart width={220} height={160}>
+                                                <Pie
+                                                    data={chartData}
+                                                    innerRadius={60}
+                                                    outerRadius={80}
+                                                    dataKey="p"
+                                                    fill="green">
+                                                    {chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
+                                                </Pie>
+                                            </PieChart>
+                                        <p>{"Save " + discountPerc + "%!"}</p>
                                         <a href={discountWeb}>Discount Website</a>
                                         </Card>
                                     </Grid.Row>
-                                    <Grid.Row>
-                                        <Button
-                                            size="huge"
-                                            color="teal"
-                                            className="menu-button"
-                                            icon
-                                            labelPosition="left"
-                                        >
-                                            <Icon name="shop" />
-                                            Add To Wishlist
-                                            </Button>
-                                </Grid.Row>
                                 </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row columns={4, "equal"}>
+                                <Grid.Column width={4}>
+                                    <p>{"USER SCORE: " + ratings}</p>
+                                    <PieChart width={160} height={160} className="chartCenter">
+                                        <Pie
+                                            data={chart1Data}
+                                            startAngle={180}
+                                            endAngle={0}
+                                            innerRadius={60}
+                                            outerRadius={80}
+                                            dataKey="p"
+                                            fill="green">
+                                            {chart1Data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]} />)}
+                                        </Pie>
+                                    </PieChart>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <p align="center">{"CRITIC SCORE: " + scores}</p>
+                                    <PieChart width={160} height={160} className="chartCenter">
+                                        <Pie
+                                            data={chart2Data}
+                                            startAngle={180}
+                                            endAngle={0}
+                                            innerRadius={60}
+                                            outerRadius={80}
+                                            dataKey="p"
+                                            fill="green">
+                                            {chart2Data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]} />)}
+                                        </Pie>
+                                    </PieChart>
 
-                            </Grid>
-                            </Modal.Content>
-                            
-                       
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <p>{"STEAM RATING: " + steamRat}</p>
+                                    <PieChart width={160} height={160} className="chartCenter">
+                                        <Pie
+                                            data={chart3Data}
+                                            startAngle={180}
+                                            endAngle={0}
+                                            innerRadius={60}
+                                            outerRadius={80}
+                                            dataKey="p"
+                                            fill="green">
+                                            {chart3Data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]} />)}
+                                        </Pie>
+                                    </PieChart>
+                                </Grid.Column>
+                                <Grid.Column width={4} >
+                                    <Button
+                                        size="huge"
+                                        color="teal"
+                                        className="button"
+                                        icon
+                                        labelPosition="left"
+                                    >
+                                        <Icon name="shop" />
+                                                Add To Wishlist
+                                    </Button>
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </Modal.Content>
+                    <Modal.Actions className="game-title" />
                 </Modal>
-
             );
- 
   });
 
   return (
