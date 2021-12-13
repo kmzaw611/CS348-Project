@@ -39,8 +39,28 @@ router.post("/", (req, res) => {
   res.send();
 });
 
+router.get("/game-info", (req, res) => {
+    console.log("GET Request to /game-info");
+    //Need name, title, price, publisher, img_link, trailer_link, website, discount price, discount percentage, critic score, user score
+    let query = `
+    SELECT G.game_id, G.title, G.price, G.publisher, MD.img_link, MD.trailer_link, 
+D.website, D.discounted_price, D.discounted_percentage, MC.critic_score, MC.user_score
+    FROM games G JOIN metadata MD
+    ON G.meta_id = MD.meta_id JOIN discounts D
+    ON G.discount_id = D.discount_id JOIN metacritic MC
+    ON G.metacritic_id = MC.metacritic_id
+    WHERE G.game_id = ${req.query.game_id}
+  `;
+    console.log(req.query);
+
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        res.send(JSON.parse(JSON.stringify(results)));
+    });
+});
+
 router.get("/", (req, res) => {
-  console.log("GET Request to /games");
+    console.log("GET Request to /games");
 
   let query = `
     SELECT G.game_id, G.title, MD.img_link, D.discounted_price, D.discounted_percentage
@@ -49,9 +69,10 @@ router.get("/", (req, res) => {
     JOIN discounts D
     ON G.discount_id = D.discount_id
   `;
+   console.log(req.query);
 
-  if (req.query.hasFilter) {
-    console.log("GET Request with filters");
+    if (req.query.hasFilter) {
+        console.log(req.query);
     query += `
       JOIN metacritic MC
       ON G.metacritic_id = MC.metacritic_id  
@@ -62,7 +83,7 @@ router.get("/", (req, res) => {
       D.discounted_price >= ${req.query.price_low} AND
       D.discounted_price <= ${req.query.price_high}
     `;
-  }
+    }
 
   connection.query(query, function (error, results, fields) {
     if (error) throw error;
