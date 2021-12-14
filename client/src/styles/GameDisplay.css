@@ -1,3 +1,35 @@
 .display-grid {
   margin: 5px !important;
 }
+.v-frame {
+    width: 100% !important;
+    height: 285px !important;
+}
+.modal {
+    transform: translateX(2.5%);
+}
+.game-title {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 40px !important;
+    background-color: teal !important;
+    color: white !important;
+    padding: 20px !important;
+}
+.grid-bord {
+    background-color: white;
+    border-top: 1px solid #dfdfdf;
+    border-left: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
+}
+.grid-cont {
+    padding: 10px;
+    background-color: teal !important;
+}
+.chartCenter {
+    align-content: center !important;
+    margin-left: 25px;
+}
+.button {
+    margin-top: 30px !important;
+}
