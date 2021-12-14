@@ -52,12 +52,15 @@ S.positive_count, S.negative_count
     ON G.metacritic_id = MC.metacritic_id
     JOIN steam S
     ON G.steam_id = S.steam_id
-    WHERE G.game_id = ${req.query.game_id}
+    WHERE G.game_id = ?
   `;
-    console.log(req.query);
 
-    connection.query(query, function (error, results, fields) {
+    connection.query("SET TRANSACTION ISOLATION LEVEL READ COMMITTED;");
+    connection.query("START TRANSACTION;");
+    connection.query(query, [req.query.game_id], function (error, results, fields) {
         if (error) throw error;
+
+        connection.query("COMMIT;");
         res.send(JSON.parse(JSON.stringify(results)));
     });
 });
