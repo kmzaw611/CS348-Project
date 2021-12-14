@@ -116,7 +116,7 @@ function FilterComponent(props) {
       </Label>
       <br />
       <br />
-      <Label className="slider-label" color="teal" size={"big"} basic>
+      <Label className="slider-label" color="teal" size={"large"} basic>
         <Slider
           value={filterArgs.priceLow}
           color="teal"
