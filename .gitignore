@@ -8,3 +8,4 @@ ERD_Diagram.png
 
 # React build
 /client/build
+.vs/slnx.sqlite

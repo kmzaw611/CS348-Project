@@ -15,6 +15,7 @@ router.post("/", (req, res) => {
             if (error) console.log("DUPE",error);
             //console.log("POST Request /wishlist successful: game added to wishlist.");
         }
+
     );
 
     res.send();
