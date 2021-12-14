@@ -9,6 +9,8 @@ app.use(express.json());
 var gameRoutes = require("./routes/games");
 app.use("/games", gameRoutes);
 
+var wishlistRoute = require("./routes/wishlist");
+app.use("/wishlist", wishlistRoute);
 // You guys can implement your own routers in /routes and import them here below.
 
 app.listen(port, () => {

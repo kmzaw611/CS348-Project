@@ -3,6 +3,7 @@ import "./styles/MainPage.css";
 import { getAPIDomain } from "./utils";
 import GameDisplay from "./GameDisplay";
 import FilterComponent from "./FilterComponent";
+import WishlistPage from "./WishListPage";
 import {
   Button,
   Header,
@@ -304,16 +305,7 @@ function MainPage(props) {
 
               <br />
 
-              <Button
-                size="huge"
-                color="teal"
-                className="menu-button"
-                icon
-                labelPosition="left"
-              >
-                <Icon name="shop" />
-                Wishlist
-              </Button>
+                          <WishlistPage info={displayInfo}/>
 
               <br />
 
