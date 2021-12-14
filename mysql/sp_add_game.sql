@@ -12,6 +12,9 @@ BEGIN
     DECLARE metacritic_id_foreign INTEGER DEFAULT 0;
     DECLARE steam_id_foreign INTEGER DEFAULT 0;
     DECLARE discount_id INTEGER DEFAULT 0;
+
+    SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+    START TRANSACTION;
     
     INSERT INTO metadata(trailer_link, img_link) VALUES (trailer_link, img_link);
     SELECT LAST_INSERT_ID() INTO meta_id_foreign;
@@ -30,6 +33,6 @@ BEGIN
     INSERT INTO games(title, price, publisher, meta_id, metacritic_id, steam_id, discount_id)
     VALUES (title, price, publisher, meta_id_foreign, metacritic_id_foreign, steam_id_foreign, discount_id);
 
-    
+    COMMIT;    
 END $$
 DELIMITER ;

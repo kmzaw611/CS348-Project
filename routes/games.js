@@ -72,10 +72,10 @@ router.get("/", (req, res) => {
     JOIN discounts D
     ON G.discount_id = D.discount_id
   `;
-   console.log(req.query);
+  
+  if (req.query.hasFilter) {
+    console.log("GET Request with filters");
 
-    if (req.query.hasFilter) {
-        console.log(req.query);
     query += `
       JOIN metacritic MC
       ON G.metacritic_id = MC.metacritic_id  
@@ -86,10 +86,16 @@ router.get("/", (req, res) => {
       D.discounted_price >= ${req.query.price_low} AND
       D.discounted_price <= ${req.query.price_high}
     `;
-    }
+  }
+  
+  query += ";";
 
+  connection.query("SET TRANSACTION ISOLATION LEVEL READ COMMITTED;");
+  connection.query("START TRANSACTION;");
   connection.query(query, function (error, results, fields) {
     if (error) throw error;
+
+    connection.query("COMMIT;");
     res.send(JSON.parse(JSON.stringify(results)));
   });
 });
