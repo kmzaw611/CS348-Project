@@ -10,6 +10,14 @@ const apiDomain = getAPIDomain();
 function GameDisplay(props) {
     const gameInfo = props.info;
     const [open, setOpen] = React.useState(false)
+    const [addWishList, setAddWish] = React.useState(false);
+    async function addWish(gtitle, g_id) {
+        //alert(g_id);
+        await axios.post(apiDomain + "/wishlist", {
+            gtitle,
+            g_id,
+        });
+    };
     //Have updating states for all different properties of the modal
     /*
      *  name
@@ -35,6 +43,7 @@ function GameDisplay(props) {
     const [chart3Data, setChart3Data] = React.useState([{ name: "undefined", p: 10 }, { name: "undefined2", p: 90 }])
     const COLORS = ['orange', 'teal'];
     const COLORS2 = ['green', 'red'];
+    const [id_of_game, set_id_game] = React.useState(0);
 
     /*var renderedGames;
     async function retrieveGameInfo() {
@@ -57,12 +66,14 @@ function GameDisplay(props) {
                     game_id: entry.game_id
                 }
             });
+            
             console.log("Test");
             console.log(gameInfo);
             setDiscountPerc(gameInfo.data[0].discounted_percentage);
             setName(gameInfo.data[0].title);
             setImgLink(gameInfo.data[0].img_link);
             setPrice(gameInfo.data[0].price);
+            set_id_game(gameInfo.data[0].game_id);
             let str = "https://www.youtube.com/embed/" + gameInfo.data[0].trailer_link.substring(gameInfo.data[0].trailer_link.indexOf("=") + 1);
             setTLink(str);
             console.log(str);
@@ -206,6 +217,9 @@ function GameDisplay(props) {
                                         className="button"
                                         icon
                                         labelPosition="left"
+                                        onClick={() => {
+                                            addWish(name, id_of_game)
+                                        }}
                                     >
                                         <Icon name="shop" />
                                                 Add To Wishlist
