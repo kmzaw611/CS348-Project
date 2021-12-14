@@ -13,6 +13,6 @@ aws-ec2-cs348.pem
 .netlify
 
 notes.txt
-.vs/slnx.sqlite
-.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
 .vs/CS348-Project/v16/.suo
+.vs/VSWorkspaceState.json
