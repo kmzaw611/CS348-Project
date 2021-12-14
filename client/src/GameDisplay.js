@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Card, Image, Modal, Button, Icon, Header, Segment, Container, GridColumn } from "semantic-ui-react";
+import { Grid, Card, Image, Modal, Button, Icon} from "semantic-ui-react";
 import "./styles/GameDisplay.css";
 import { getAPIDomain } from "./utils";
 import axios from "axios";
