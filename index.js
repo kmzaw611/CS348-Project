@@ -24,6 +24,7 @@ app.post("/games", (req, res) => {
   );
 });
 
+<<<<<<< Updated upstream
 app.get("/games", (req, res) => {
   connection.query(
     "SELECT title, price, publisher FROM games;",
@@ -45,6 +46,12 @@ app.get("/games", (req, res) => {
     }
   );
 });
+=======
+var wishlistRoute = require("./routes/wishlist");
+app.use("/wishlist", wishlistRoute);
+
+// You guys can implement your own routers in /routes and import them here below.
+>>>>>>> Stashed changes
 
 app.listen(port, () => {
   console.log("Server running on port: " + port);
