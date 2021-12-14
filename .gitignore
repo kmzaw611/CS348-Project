@@ -8,3 +8,7 @@ ERD_Diagram.png
 
 # React build
 /client/build
+
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/CS348-Project/v16/.suo
